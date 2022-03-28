@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using Drwa_2022.Models;
 
 namespace Drwa_2022.Controllers
@@ -35,6 +34,39 @@ namespace Drwa_2022.Controllers
         {
             _context = HttpContext.RequestServices.GetService(typeof(KelasContext)) as KelasContext;
             return _context.GetSiswa(id);
+        }
+
+        [HttpPost]
+        public ActionResult<KelasItem> AddKelas([FromForm] string kelas, [FromForm] string jurusan, [FromForm] int sub)
+        {
+            KelasItem ki = new KelasItem();
+            ki.kelas = kelas;
+            ki.jurusan = jurusan;
+            ki.sub = sub;
+
+            _context = HttpContext.RequestServices.GetService(typeof(KelasContext)) as KelasContext;
+            return _context.AddKelas(ki);
+
+        }
+
+        [HttpOptions]
+        public ActionResult<KelasItem> OptAddKelas([FromForm] string kelas, [FromForm] string jurusan, [FromForm] int sub)
+        {
+            KelasItem ki = new KelasItem();
+            ki.kelas = kelas;
+            ki.jurusan = jurusan;
+            ki.sub = sub;
+
+            _context = HttpContext.RequestServices.GetService(typeof(KelasContext)) as KelasContext;
+            return _context.AddKelas(ki);
+
+        }
+
+        [HttpOptions]
+        public ActionResult<IEnumerable<KelasItem>> OptGetSiswaItems()
+        {
+            _context = HttpContext.RequestServices.GetService(typeof(KelasContext)) as KelasContext;
+            return _context.GetAllSiswa();
         }
     }
 }

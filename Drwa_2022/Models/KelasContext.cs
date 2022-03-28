@@ -4,10 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Drwa_2022.Models
 {
-    public class KelasContext:DbContext
+    public class KelasContext : DbContext
     {
         public KelasContext(DbContextOptions<KelasContext> options) : base(options)
         {
@@ -74,6 +75,34 @@ namespace Drwa_2022.Models
                 }
             }
             return list;
+        }
+        public KelasItem AddKelas(KelasItem ki)
+        {
+
+            using (MySqlConnection conn = GetConnection()) 
+            {
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand("insert into kelas (kelas,jurusan,sub) values (@kelas, @jurusan, @sub) ", conn);
+                cmd.Parameters.AddWithValue("@kelas", ki.kelas);
+                cmd.Parameters.AddWithValue("@jurusan", ki.jurusan);
+                cmd.Parameters.AddWithValue("@sub", ki.sub);
+
+                cmd.ExecuteReader();
+                /*using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        *//*list.Add(new KelasItem()
+                        {
+                            id = reader.GetInt32("id_kelas"),
+                            kelas = reader.GetString("kelas"),
+                            sub = reader.GetInt32("sub"),
+                            jurusan = reader.GetString("jurusan")
+                        });*//*
+                    }
+                }*/
+            }
+            return ki;
         }
     }
 }
