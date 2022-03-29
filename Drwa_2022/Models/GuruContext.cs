@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
 
-namespace Uts_Drwa.Models
+namespace Drwa_2022.Models
 {
     public class GuruContext : DbContext
     {

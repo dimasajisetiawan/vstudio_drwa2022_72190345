@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MySql.Data.MySqlClient;
 
-namespace Uts_Drwa.Models
+namespace Drwa_2022.Models
 {
     public class MapelContext : DbContext
     {
@@ -69,7 +69,7 @@ namespace Uts_Drwa.Models
             }
             return list;
         }
-        public MapelItem AddMapel (MapelItem mi)
+        public MapelItem AddMapel(MapelItem mi)
         {
 
             using (MySqlConnection conn = GetConnection())

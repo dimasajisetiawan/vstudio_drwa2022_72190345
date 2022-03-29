@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Uts_Drwa.Models;
+﻿using Drwa_2022.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Uts_Drwa.Controllers
 {
@@ -23,7 +23,7 @@ namespace Uts_Drwa.Controllers
         }
 
         //Get : api/kelas/{id}
-        [HttpGet("{nip}", Name = "Get")]
+        [HttpGet("{nip}", Name = "Get Guru By Nip")]
         public ActionResult<IEnumerable<GuruItem>> GetGuruItem(String nip)
         {
             _context = HttpContext.RequestServices.GetService(typeof(GuruContext)) as GuruContext;

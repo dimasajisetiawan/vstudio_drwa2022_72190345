@@ -1,4 +1,4 @@
-﻿namespace Uts_Drwa.Models
+﻿namespace Drwa_2022.Models
 {
     public class GuruItem
     {
